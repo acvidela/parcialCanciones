@@ -1,17 +1,21 @@
 from manipularCancionero import *
 
-canciones = []  #inicializa la lista de canciones vacía
-primerasCanciones(canciones)         #agrega primeras 5 canciones "a mano"
-
-opcion = ""
-while opcion != "f" and opcion != "F":
+def textoMenu():
     print("\nEste es su cancionero, ¿qué desea hacer?")
     print(" l: para listar el cancionero completo")
     print(" a: para agregar una nueva canción")
     print(" b: para buscar e imprimir una canción dado su nombre")
     print(" m: para modificar los datos de una canción")
     print(" f: para salir")
-    opcion = input()
+    opcion = input() 
+    return(opcion)
+
+canciones = []  #inicializa la lista de canciones vacía
+primerasCanciones(canciones)         #agrega primeras 5 canciones "a mano"
+
+opcion = ""
+while opcion != "f" and opcion != "F":
+    opcion = textoMenu()
     if opcion == "l":
         listarCanciones(canciones)
         continue
@@ -25,11 +29,7 @@ while opcion != "f" and opcion != "F":
         modificarPorNombre(canciones)
         continue
     if opcion == "f":        
-        print("chau")
+        print("Gracias por utilizar el cancionero.")
         break
+    print("opción incorrecta, vuelva a intentar")
 
-# listarCanciones(canciones)
-# agregarNuevaCancion(canciones)
-# listarCanciones(canciones)
-# modificarPorNombre(canciones)
-# buscarPorNombre(canciones)
