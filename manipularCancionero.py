@@ -2,31 +2,23 @@
 
 from tkinter import N
 
-
+#Recibe el cancionero y tres strings para armar el diccionario que agregará al final del cancionero
 def agregarUnaCancion(listaCanciones, nombreIn, artistaIn, letraIn):
     cancion = {'nombre': nombreIn,'artista':artistaIn,'letra':letraIn}
     listaCanciones.append(cancion)
 
-#primerasCanciones agrega 5 primeras canciones en la lista de canciones, para luego poder interactuar con el cancionero
-def primerasCanciones(listaCanciones):
-    nombre = "Pepe Lui"
-    artista = "Divididos"
-    letra = "Va Pepe Lui con bocho de radiograbador"
-    agregarUnaCancion(listaCanciones, nombre,artista,letra) #primera canción
-    nombre = "Luca"
-    artista = "Divididos"
-    letra = "Luca\n como una canción que zumba en el viento del corazón\nLuca\nfuelle tano que\nrespirando pampas se aporteño"
-    agregarUnaCancion(listaCanciones, nombre,artista,letra) #segunda canción
 
+#Pide al usuario la letra de una canción, ingresando línea por línea
 def ingresarLetra():
     letra = ""
-    print("Ingrese la letra de la canción. Para nuevo renglón enter y la letra f para terminar")
-    lineaLetra = input()
-    while lineaLetra != "f" and lineaLetra != "F":
+    print("Ingrese la letra de la canción por líneas. Cada línea termina con ENTER, teclee f para terminar")
+    lineaLetra = input().lower()
+    while lineaLetra != "f" :
         letra = letra + "\n" + lineaLetra
-        lineaLetra = input("Ingrese nueva línea, f para terminar\n")
+        lineaLetra = input("Ingrese nueva línea, f para terminar\n").lower()
     return letra
 
+#Pide al usuario los datos de una nueva canción para agregar al cancionero
 def agregarNuevaCancion(listaCanciones):
     nombre = input("Ingrese el nombre la nueva canción: ")
     artista = input("Ingrese el nombre del artista: ")
@@ -47,15 +39,19 @@ def listarCanciones(listaCanciones):
     for cancion in listaCanciones:
         imprimirCancion(cancion)
 
+#Busca una canción dentro del cancionero por nombre. 
+#Si está la imprime, sino muestra mensaje
 def buscarPorNombre(listaCanciones):
-    nombre = input("Ingrese el nombre de la canción a buscar: ")
+    nombre = input("Ingrese el nombre de la canción a buscar: ").lower() 
     for cancion in listaCanciones:
-        if cancion["nombre"] == nombre:
+        if cancion["nombre"].lower() == nombre:
             print("Encontramos su canción:")
             imprimirCancion(cancion)
             return
     print("El nombre de la canción buscada no se encuentra en el cancionero")
 
+#Solicita el nombre de la canción que quiere modificar. Si se encuentra pide los datos y modifica.
+#Si ingresa un nombre que no está le sugiere agregarla 
 def modificarPorNombre(listaCanciones):
     nombre = input("Ingrese el nombre de la canción a modificar: ")
     for i in range(0,len(listaCanciones)):
@@ -74,4 +70,4 @@ def modificarPorNombre(listaCanciones):
                 letraNueva = ingresarLetra()
                 listaCanciones[i]["letra"]=letraNueva
             return
-    print("El nombre de la canción buscada no se encuentra en el cancionero")
+    print("El nombre de la canción buscada no se encuentra en el cancionero\nSi desea agregarla como nueva canción, seleccione la opción \"a\" en el menú principal")

@@ -1,4 +1,5 @@
 from manipularCancionero import *
+from inicializarCancionero import *
 
 def textoMenu():
     print("\nEste es su cancionero, ¿qué desea hacer?")
@@ -7,14 +8,14 @@ def textoMenu():
     print(" b: para buscar e imprimir una canción dado su nombre")
     print(" m: para modificar los datos de una canción")
     print(" f: para salir")
-    opcion = input() 
+    opcion = input().lower() #pasa a minúscula la opción por si ingresó mayúscula 
     return(opcion)
 
-canciones = []  #inicializa la lista de canciones vacía
+inicializar(canciones)               #inicializa la lista de canciones vacía
 primerasCanciones(canciones)         #agrega primeras 5 canciones "a mano"
 
 opcion = ""
-while opcion != "f" and opcion != "F":
+while opcion != "f":
     opcion = textoMenu()
     if opcion == "l":
         listarCanciones(canciones)
