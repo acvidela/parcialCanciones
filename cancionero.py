@@ -11,7 +11,7 @@ def textoMenu():
     opcion = input().lower() #pasa a minúscula la opción por si ingresó mayúscula 
     return(opcion)
 
-inicializar(canciones)               #inicializa la lista de canciones vacía
+canciones = inicializar()               #inicializa la lista de canciones vacía
 primerasCanciones(canciones)         #agrega primeras 5 canciones "a mano"
 
 opcion = ""

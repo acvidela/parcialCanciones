@@ -12,10 +12,10 @@ def agregarUnaCancion(listaCanciones, nombreIn, artistaIn, letraIn):
 def ingresarLetra():
     letra = ""
     print("Ingrese la letra de la canción por líneas. Cada línea termina con ENTER, teclee f para terminar")
-    lineaLetra = input().lower()
-    while lineaLetra != "f" :
+    lineaLetra = input()
+    while lineaLetra != "f" and lineaLetra != "F" :
         letra = letra + "\n" + lineaLetra
-        lineaLetra = input("Ingrese nueva línea, f para terminar\n").lower()
+        lineaLetra = input("Ingrese nueva línea, f para terminar\n")
     return letra
 
 #Pide al usuario los datos de una nueva canción para agregar al cancionero
@@ -53,20 +53,20 @@ def buscarPorNombre(listaCanciones):
 #Solicita el nombre de la canción que quiere modificar. Si se encuentra pide los datos y modifica.
 #Si ingresa un nombre que no está le sugiere agregarla 
 def modificarPorNombre(listaCanciones):
-    nombre = input("Ingrese el nombre de la canción a modificar: ")
+    nombre = input("Ingrese el nombre de la canción a modificar: ").lower()
     for i in range(0,len(listaCanciones)):
-        if listaCanciones[i]["nombre"] == nombre:
+        if listaCanciones[i]["nombre"].lower() == nombre:
             print("Encontramos su canción")
-            opcion = input("¿Desea modificar el nombre? S/N")
-            if opcion == "S" or opcion == "s":
+            opcion = input("¿Desea modificar el nombre? S/N").lower()
+            if opcion == "s":
                 nombreNuevo = input("ingrese nuevo nombre: ")
                 listaCanciones[i]["nombre"]=nombreNuevo
-            opcion = input("¿Desea modificar el artista? S/N")
-            if opcion == "S" or opcion == "s":
+            opcion = input("¿Desea modificar el artista? S/N").lower()
+            if opcion == "s":
                 artistaNuevo = input("ingrese nuevo artista: ")
                 listaCanciones[i]["artista"]=artistaNuevo
-            opcion = input("¿Desea modificar la letra? S/N")
-            if opcion == "S" or opcion == "s":
+            opcion = input("¿Desea modificar la letra? S/N").lower()
+            if opcion == "s":
                 letraNueva = ingresarLetra()
                 listaCanciones[i]["letra"]=letraNueva
             return
